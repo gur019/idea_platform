@@ -1,0 +1,8 @@
+@import "./global-variable.scss";
+
+.tickets{
+    display: flex;
+    background-color: white;
+    padding: 15px;
+    border-radius: $border-radius;
+}

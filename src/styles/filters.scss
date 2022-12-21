@@ -1,0 +1,128 @@
+@import "./global-variable.scss";
+
+.filters {
+    background-color: white;
+    min-width: 250px;
+    padding: 15px;
+    margin-right: 15px;
+    box-shadow: 0 0 5px rgba($color: black, $alpha: .1);
+    border-radius: $border-radius;
+
+    .currency {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        &__title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        &__form {
+            display: flex;
+        }
+
+        &__btns {
+            width: 100%;
+            text-align: center;
+            color: $color-blue;
+            font-weight: 600;
+            padding: 15px 20px;
+            border: .5px solid $color-blue;
+            outline: .5px solid $color-blue;
+            cursor: pointer;
+            transition: .2s;
+
+            &:hover {
+                background-color: rgba($color: $color-blue, $alpha: .1);
+            }
+
+            &:nth-child(2) {
+                border-radius: 5px 0 0 5px;
+            }
+
+            &:last-child {
+                border-radius: 0 5px 5px 0;
+            }
+        }
+
+        input[type=radio]:checked+label {
+            background-color: $color-blue;
+            color: white;
+        }
+
+    }
+
+    .numberOfTransfers {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        &__title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        &__form {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        &__btns {
+            display: flex;
+            align-items: center;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: .2s;
+
+            &:hover {
+                background-color: rgba($color: $color-blue, $alpha: .1);
+            }
+
+            & span {
+                margin-left: 15px;
+            }
+        }
+
+        input[type="checkbox"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            appearance: none;
+            margin: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba($color: black, $alpha: .1);
+            border-radius: 5px;
+            transition: .2s;
+        }
+
+        input[type="checkbox"]:checked {
+            border: 2px solid $color-blue;
+        }
+
+        input[type="checkbox"]:checked::before {
+            content: '';
+            width: 3px;
+            height: 7px;
+            border-bottom: 2px solid $color-blue;
+            border-right: 2px solid $color-blue;
+            transform: rotate(45deg) translateY(-1px) translateX(-1px);
+        }
+
+    }
+
+
+
+}
