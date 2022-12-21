@@ -1,12 +1,15 @@
 @import "./global-variable.scss";
 
 .filters {
-    background-color: white;
-    min-width: 250px;
-    padding: 15px;
-    margin-right: 15px;
-    box-shadow: 0 0 5px rgba($color: black, $alpha: .1);
-    border-radius: $border-radius;
+
+    &__block{
+        background-color: white;
+        min-width: 250px;
+        padding: 15px;
+        margin-right: 15px;
+        box-shadow: 0 0 5px rgba($color: black, $alpha: .1);
+        border-radius: $border-radius;
+    }
 
     .currency {
         display: flex;
@@ -122,7 +125,5 @@
         }
 
     }
-
-
 
 }

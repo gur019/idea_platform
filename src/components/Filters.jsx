@@ -6,12 +6,10 @@ import FiltersNumberOfTransfers from './FiltersNumberOfTransfers';
 const Filters = () => {
     return (
         <div className='filters'>
-
-            <FilterCurrency />
-
-            <FiltersNumberOfTransfers/>
-            
-
+            <div className='filters__block'>
+                <FilterCurrency />
+                <FiltersNumberOfTransfers />
+            </div>
         </div>
     );
 };

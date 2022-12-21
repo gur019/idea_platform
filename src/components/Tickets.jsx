@@ -1,15 +1,22 @@
 import React from 'react';
 import '../styles/tickets.scss';
-import IdeaButton from './UI/button/IdeaButton';
+
+import tickets from '../tickets.json';
+import Ticket from './Ticket';
 
 const Tickets = () => {
+    
+
+console.log(tickets.tickets.length);
+
+
     return (
         <div className='tickets'>
-            <div>
-                <div>turkish airlines</div>
-                <IdeaButton>Купить <br/> за 21 032₽</IdeaButton>
-            </div>
-            {/* <div>sdfsdf</div> */}
+
+            {tickets.tickets.map((ticket) => 
+                <Ticket key={ticket.id} ticket={ticket}/>
+            )}
+            
         </div>
     );
 };

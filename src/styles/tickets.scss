@@ -1,8 +1,103 @@
 @import "./global-variable.scss";
 
-.tickets{
-    display: flex;
-    background-color: white;
-    padding: 15px;
-    border-radius: $border-radius;
+.tickets {
+
+    .ticket {
+        display: flex;
+        background-color: white;
+        padding: 15px;
+        margin-top: 15px;
+        box-shadow: 0 0 5px rgba($color: black, $alpha: .1);
+        border-radius: $border-radius;
+
+        &:first-child{
+            margin-top: 0;
+        }
+
+        &__left {
+            border-right: 1px solid rgba($color: black, $alpha: .1);
+            margin-top: -15px;
+            margin-bottom: -15px;
+            padding: 15px 15px 15px 0;
+        }
+
+        &__logo {
+            width: 180px;
+            height: 60px;
+            margin-bottom: 15px;
+            // background-color: rebeccapurple;
+            background-image: url(../img/1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        &__right {
+            padding-left: 15px;
+            width: 100%;
+        }
+
+        &__timeBlock {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__time {
+            font-size: 46px;
+        }
+
+        &__transfer {
+            margin: 0 15px;
+            color: rgba($color: black, $alpha: .3);
+            text-align: center;
+        }
+
+        &__transferText {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        &__transferSeparator {
+            position: relative;
+            width: 150px;
+            border-bottom: 1px solid rgba($color: black, $alpha: .3);
+            margin-top: 10px;
+        }
+
+        &__transferSeparator::before {
+            content: "\2708";
+            position: absolute;
+            background-color: white;
+            right: 0;
+            top: -9.3px;
+        }
+
+        &__airportBlock {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__airportNameAndDate {
+            margin-top: 5px;
+        }
+
+        &__airportName {
+            font-weight: 600;
+        }
+        
+        &__airportDate{
+            font-size: 14px;
+            color: rgba($color: black, $alpha: .5);
+            margin-top: 5px;
+        }
+
+        &__airportDateRight {
+            text-align: right;
+        }
+
+
+
+    }
+
 }
