@@ -1,7 +1,7 @@
 import { APP_SET_TRANSPLANTS_0, APP_SET_TRANSPLANTS_ALL, APP_SET_TRANSPLANTS_1, APP_SET_TRANSPLANTS_2, APP_SET_TRANSPLANTS_3 } from './../../actions/app/appTypes';
 
 const initialState = {
-    transplantsAll: false,
+    transplantsAll: [],
     transplants0: false,
     transplants1: false,
     transplants2: false,

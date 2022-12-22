@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { appSetTransplantsAll } from './store/actions/app/appActions';
 
 const FiltersNumberOfTransfers = () => {
 
@@ -12,37 +13,35 @@ const FiltersNumberOfTransfers = () => {
     // const transplants3= useSelector((state) => state.app.transplants3, shallowEqual);
 
     const transplants = [
-        { id: 1, title: 'Все' },
-        { id: 2, title: 'Без пересадок' },
-        { id: 3, title: '1 пересадка' },
-        { id: 4, title: '2 пересадки' },
-        { id: 5, title: '3 пересадки' }
+        { id: 0, title: 'Без пересадок' },
+        { id: 1, title: '1 пересадка' },
+        { id: 2, title: '2 пересадки' },
+        { id: 3, title: '3 пересадки' }
     ]
 
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
 
-    // const handleSelectAll = (e) => {
-    //     setIsCheckAll(!isCheckAll);
-    //     setIsCheck(transplants.map(li => li.id));
-    //     if (isCheckAll) {
-    //         setIsCheck([]);
-    //     }
-    // };
-
-    // https://codesandbox.io/s/react-select-all-checkbox-jbub2?file=/src/index.js:968-977
-
-    const handleClick = (e) => {
-        const { id, checked } = e.target;
-        setIsCheck([...isCheck, id]);
-        console.log([...isCheck, id]);
-        if (!checked) {
-            console.log(isCheck.filter(item => item !== id));
-            // setIsCheck(isCheck.filter(item => item !== id));
+    const handleSelectAll = (e) => {
+        setIsCheckAll(!isCheckAll);
+        setIsCheck(transplants.map(li => li.id));
+        if (isCheckAll) {
+            setIsCheck([]);
         }
     };
 
-    // console.log(isCheck);
+    const handleClick = (e) => {
+        const { id, checked } = e.target;
+        setIsCheck([...isCheck, Number(id)]);
+        if (!checked) {
+            setIsCheck(isCheck.filter(item => item !== Number(id)));
+        }
+    };
+
+    useEffect(() => {
+        dispatch(appSetTransplantsAll(isCheck));
+    }, [isCheck]);
+
 
     // const [data, setData] = useState(transplants);
 
@@ -66,6 +65,11 @@ const FiltersNumberOfTransfers = () => {
         <div className="numberOfTransfers">
             <div className='numberOfTransfers__title'>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
             <form className='numberOfTransfers__form'>
+
+                <label className='numberOfTransfers__btns'>
+                    <input type="checkbox" id='selectAll' name='selectAll' onChange={handleSelectAll} checked={isCheckAll} />
+                    <span>Все</span>
+                </label>
 
                 {transplants.map(({ id, title }) =>
                     <label key={id} className='numberOfTransfers__btns'>

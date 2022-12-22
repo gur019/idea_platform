@@ -15,29 +15,50 @@ const Tickets = ({ tickets }) => {
     const [ticketState, setTicketState] = useState(tickets.tickets);
 
 
-    function sortAndFilterTickets(ticket) {
+    // const sortedTicket = (ticket) => {
+    //     const data = [...ticket];
+    //     const sort = data.sort((a, b) => (a.price > b.price) ? 1 : -1);
 
-        const data = [...ticket];
-        const sort = data.sort((a, b) => (a.price > b.price) ? 1 : -1);
+    //     return sort;
+    // }
+
+    const [test, setTest] = useState(0)
+
+    function sortAndFilterTickets(ticket, num) {
+
+        // console.log(num,'num');
+
+        setTicketState(ticket.filter((asd) => (asd.stops === num)));
+        console.log(ticket,'ticket');
+
+
         // const filter = sort.filter((s) => (s.stops === 2));
         // const result = filter;
 
-        setTicketState(sort);
 
         // console.log([...ticket].filter((asd) => (asd.stops === 0)));
         // setTicketState([...ticket].filter((asd) => (asd.stops === 0)));
     }
 
-    useEffect(() => {
-        if (tickets) {
-            sortAndFilterTickets(ticketState);
-        }
-        // console.log(transplantsAll, transplants0, transplants1, transplants2, transplants3);
-    }, [tickets]);
+    // useEffect(() => {
+    //     if (tickets) {
+    //         sortAndFilterTickets(ticketState);
+    //         console.log("!!!!!!!!!!!");
+    //     }
+
+    // }, [tickets]);
+
+    // useEffect(() => {
+    //     // if (transplantsAll) {
+    //         // console.log(transplantsAll, 'transplantsAll');
+    //         sortAndFilterTickets(ticketState, test);
+    //     // }
+    // }, [test]);
 
 
     return (
         <div className='tickets'>
+            <button onClick={() => setTest(test + 1)}>asd</button> {test}
             {ticketState.map((ticket) =>
                 <Ticket key={ticket.id} ticket={ticket} />
             )}
