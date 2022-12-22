@@ -30,6 +30,8 @@ const FiltersNumberOfTransfers = () => {
     //     }
     // };
 
+    // https://codesandbox.io/s/react-select-all-checkbox-jbub2?file=/src/index.js:968-977
+
     const handleClick = (e) => {
         const { id, checked } = e.target;
         setIsCheck([...isCheck, id]);
