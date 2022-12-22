@@ -8,6 +8,8 @@ const FilterCurrency = () => {
         {id: 3, name: 'EUR'}
     ])
 
+    
+
     return (
         <div className='currency'>
             <div className='currency__title'>ВАЛЮТА</div>
