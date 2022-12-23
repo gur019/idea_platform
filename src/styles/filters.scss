@@ -36,7 +36,8 @@
             font-weight: 600;
             padding: 15px 20px;
             border: .5px solid $color-blue;
-            outline: .5px solid $color-blue;
+            // outline: .5px solid $color-blue;
+            box-shadow: 0 0 0 1px $color-blue;
             cursor: pointer;
             transition: .2s;
 

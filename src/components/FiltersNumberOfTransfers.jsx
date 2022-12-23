@@ -6,60 +6,29 @@ const FiltersNumberOfTransfers = () => {
 
     const dispatch = useDispatch();
 
-    // const transplantsAll= useSelector((state) => state.app.transplantsAll, shallowEqual);
-    // const transplants0= useSelector((state) => state.app.transplants0, shallowEqual);
-    // const transplants1= useSelector((state) => state.app.transplants1, shallowEqual);
-    // const transplants2= useSelector((state) => state.app.transplants2, shallowEqual);
-    // const transplants3= useSelector((state) => state.app.transplants3, shallowEqual);
+    const transplantsAll = useSelector((state) => state.app.transplantsAll, shallowEqual);
 
-    const transplants = [
-        { id: 0, title: 'Без пересадок' },
-        { id: 1, title: '1 пересадка' },
-        { id: 2, title: '2 пересадки' },
-        { id: 3, title: '3 пересадки' }
-    ]
+    const transplants = [ 0, 1, 2, 3 ];
 
     const [isCheckAll, setIsCheckAll] = useState(false);
-    const [isCheck, setIsCheck] = useState([]);
 
-    const handleSelectAll = (e) => {
+    const toggleStatus = (status) => {
+        if (transplantsAll.includes(status)) {
+            dispatch(appSetTransplantsAll(transplantsAll.filter((s) => s !== status)));
+        } else {
+            dispatch(appSetTransplantsAll([...transplantsAll, status]));
+        }
+    };
+
+    const handleSelectAll = () => {
         setIsCheckAll(!isCheckAll);
-        setIsCheck(transplants.map(li => li.id));
-        if (isCheckAll) {
-            setIsCheck([]);
+        if (!isCheckAll) {
+            dispatch(appSetTransplantsAll(transplants));
+        } else{
+            dispatch(appSetTransplantsAll([]));
         }
     };
 
-    const handleClick = (e) => {
-        const { id, checked } = e.target;
-        setIsCheck([...isCheck, Number(id)]);
-        if (!checked) {
-            setIsCheck(isCheck.filter(item => item !== Number(id)));
-        }
-    };
-
-    useEffect(() => {
-        dispatch(appSetTransplantsAll(isCheck));
-    }, [isCheck]);
-
-
-    // const [data, setData] = useState(transplants);
-
-    // function handleChange(e) {
-    //     const value = e.target.value;
-    //     const modifiedData = [...data];
-    //     modifiedData.map((item) => {
-    //         item.isChecked = item.id === +value;
-    //         return item;
-    //     });
-    //     setData(modifiedData);
-    //     // console.log(modifiedData);
-
-    //     //   dispatch(appSetTransplants(transfer.stop)
-    //     console.log(value);
-    //     console.log(modifiedData);
-
-    // }
 
     return (
         <div className="numberOfTransfers">
@@ -67,41 +36,27 @@ const FiltersNumberOfTransfers = () => {
             <form className='numberOfTransfers__form'>
 
                 <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" id='selectAll' name='selectAll' onChange={handleSelectAll} checked={isCheckAll} />
+                    <input type="checkbox" onChange={handleSelectAll} checked={isCheckAll} />
                     <span>Все</span>
                 </label>
 
-                {transplants.map(({ id, title }) =>
-                    <label key={id} className='numberOfTransfers__btns'>
-                        <input type="checkbox" id={id} name={title} onChange={handleClick} checked={isCheck.includes(id)} />
-                        <span>{title}</span>
+                {transplants.map((status, index) => (
+                    <label key={index} className='numberOfTransfers__btns'>
+                        <input
+                            type="checkbox"
+                            checked={transplantsAll.includes(status)}
+                            onChange={() => toggleStatus(status)}
+                        />
+                        <span>
+                            {
+                                status === 0 && 'Без пересадок' || 
+                                status === 1 && '1 пересадка' ||
+                                status === 2 && '2 пересадки' ||
+                                status === 3 && '3 пересадки' 
+                            }
+                        </span>
                     </label>
-                )}
-
-                {/* <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" checked={transplantsAll} onChange={() => dispatch(appSetTransplantsAll(!transplantsAll))} />
-                    <span>Все</span>
-                </label>
-
-                <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" checked={transplants0} onChange={() => dispatch(appSetTransplants0(!transplants0))} />
-                    <span>Без пересадок</span>
-                </label>
-
-                <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" checked={transplants1} onChange={() => dispatch(appSetTransplants1(!transplants1))} />
-                    <span>1 пересадка</span>
-                </label>
-
-                <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" checked={transplants2} onChange={() => dispatch(appSetTransplants2(!transplants2))} />
-                    <span>2 пересадки</span>
-                </label>
-
-                <label className='numberOfTransfers__btns'>
-                    <input type="checkbox" checked={transplants3} onChange={() => dispatch(appSetTransplants3(!transplants3))} />
-                    <span>3 пересадки</span>
-                </label> */}
+                ))}
 
             </form>
         </div>
